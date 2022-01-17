@@ -1,8 +1,10 @@
 <script>
-  let title = 'Full Stack Svelte'
+  import TodoItem from '$lib/components/TodoItem/todo-item.svelte'
 </script>
 
-<h1>Welcome to {title}</h1>
-<p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
+<svelte:head>
+  <title>Todos</title>
+</svelte:head>
+
+<h1>Todos</h1>
+<TodoItem />
