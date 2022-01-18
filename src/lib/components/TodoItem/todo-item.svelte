@@ -1,4 +1,4 @@
-<div>
+<div class="grid grid-cols-[3rem_1fr_3rem]">
   <!-- Done/Not Done Checkbox -->
   <form action="" method="">
     <input type="hidden" name="done" value="" />
@@ -6,8 +6,8 @@
   </form>
 
   <!-- Todo Text Input -->
-  <form action="" method="">
-    <input type="text" />
+  <form action="" method="" class="flex">
+    <input type="text" class="flex-grow" />
     <button aria-label="Save todo">Save</button>
   </form>
 
