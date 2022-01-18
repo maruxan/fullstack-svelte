@@ -1,18 +1,39 @@
-<div class="grid grid-cols-[3rem_1fr_3rem]">
+<script>
+  import GoCheck from 'svelte-icons/go/GoCheck.svelte'
+  import GoThumbsup from 'svelte-icons/go/GoThumbsup.svelte'
+  import GoTrashcan from 'svelte-icons/go/GoTrashcan.svelte'
+
+  let isChecked = false
+  const check = () => (isChecked = !isChecked)
+</script>
+
+<div class="grid grid-cols-[3rem_1fr_3rem] items-center place-items-center">
   <!-- Done/Not Done Checkbox -->
-  <form action="" method="">
+  <form action="" method="" on:submit|preventDefault={check}>
     <input type="hidden" name="done" value="" />
-    <button aria-label="Mark done/not done">Done/Not Done</button>
+    <button
+      aria-label="Mark done/not done"
+      class="h-10 w-10 p-2.5 rounded-full border border-gray-900">
+      {#if isChecked}
+        <GoCheck />
+      {/if}
+    </button>
   </form>
 
   <!-- Todo Text Input -->
-  <form action="" method="" class="flex">
-    <input type="text" class="flex-grow" />
-    <button aria-label="Save todo">Save</button>
+  <form action="" method="" class="relative w-full">
+    <input type="text" class="w-full" />
+    <button
+      aria-label="Save todo"
+      class="h-10 w-10 p-2.5 absolute top-0 right-0">
+      <GoThumbsup />
+    </button>
   </form>
 
   <!-- Delete Todo Button -->
   <form action="" method="">
-    <button aria-label="Delete todo">Delete</button>
+    <button aria-label="Delete todo" class="h-10 w-10 p-2">
+      <GoTrashcan />
+    </button>
   </form>
 </div>
