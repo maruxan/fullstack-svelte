@@ -13,7 +13,7 @@
     <input type="hidden" name="done" value="" />
     <button
       aria-label="Mark done/not done"
-      class="h-10 w-10 p-2.5 rounded-full border border-gray-900">
+      class="h-10 w-10 p-2.5 rounded-full border border-light-900">
       {#if isChecked}
         <GoCheck />
       {/if}

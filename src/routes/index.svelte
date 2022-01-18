@@ -14,8 +14,7 @@
       name="text"
       aria-label="Add a todo"
       placeholder="+ type to add a todo"
-      class="text-center"
-    />
+      class="text-center" />
   </form>
   <TodoItem />
 </div>
