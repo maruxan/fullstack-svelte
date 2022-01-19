@@ -1,5 +1,28 @@
-<script>
+<!-- Pre-fetching data -->
+<script context="module" lang="ts">
+  import type { Load } from '@sveltejs/kit'
+
+  export const load: Load = async ({ fetch }) => {
+    const res = await fetch('/api/todos.json')
+
+    if (res.ok) {
+      const todos = await res.json()
+      return {
+        props: { todos },
+      }
+    }
+    // else
+    const { message } = await res.json()
+    return {
+      error: new Error(message),
+    }
+  }
+</script>
+
+<script lang="ts">
   import TodoItem from '$lib/components/TodoItem/todo-item.svelte'
+
+  export let todos: Todo[]
 </script>
 
 <svelte:head>
@@ -8,7 +31,7 @@
 
 <div class="max-w-3xl mx-auto pt-12">
   <h1 class="mb-4 text-3xl">Todos</h1>
-  <form action="" method="" class="grid mb-4">
+  <form action="/api/todos.json" method="post" class="grid mb-4">
     <input
       type="text"
       name="text"
@@ -16,5 +39,8 @@
       placeholder="+ type to add a todo"
       class="text-center" />
   </form>
-  <TodoItem />
+
+  {#each todos as todo}
+    <TodoItem {todo} />
+  {/each}
 </div>
