@@ -1,20 +1,20 @@
-<script>
+<script lang="ts">
   import GoCheck from 'svelte-icons/go/GoCheck.svelte'
   import GoThumbsup from 'svelte-icons/go/GoThumbsup.svelte'
   import GoTrashcan from 'svelte-icons/go/GoTrashcan.svelte'
 
-  let isChecked = false
-  const check = () => (isChecked = !isChecked)
+  export let todo: Todo
 </script>
 
-<div class="grid grid-cols-[3rem_1fr_3rem] items-center place-items-center">
+<div
+  class="mb-4 grid grid-cols-[3rem_1fr_3rem] items-center place-items-center">
   <!-- Done/Not Done Checkbox -->
-  <form action="" method="" on:submit|preventDefault={check}>
+  <form action="" method="">
     <input type="hidden" name="done" value="" />
     <button
       aria-label="Mark done/not done"
       class="h-10 w-10 p-2.5 rounded-full border border-light-900">
-      {#if isChecked}
+      {#if todo.done}
         <GoCheck />
       {/if}
     </button>
@@ -22,7 +22,7 @@
 
   <!-- Todo Text Input -->
   <form action="" method="" class="relative w-full">
-    <input type="text" class="w-full" />
+    <input type="text" class="w-full" value={todo.text} />
     <button
       aria-label="Save todo"
       class="h-10 w-10 p-2.5 absolute top-0 right-0">
