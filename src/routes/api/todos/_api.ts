@@ -24,11 +24,15 @@ export const api = (req: Request, data?: Record<string, unknown>) => {
       break
 
     case 'PATCH':
-      todos = todos.map((todo) =>
-        todo.uid === req.params.uid
-          ? { ...todo, text: data.text as string }
-          : todo
-      )
+      todos = todos.map((todo) => {
+        if (todo.uid === req.params.uid) {
+          // Either updates the todo text or done status
+          data.text
+            ? (todo.text = data.text as string)
+            : (todo.done = data.done as boolean)
+        }
+        return todo
+      })
       status = 200
       break
   }
