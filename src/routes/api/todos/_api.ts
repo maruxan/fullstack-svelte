@@ -37,7 +37,9 @@ export const api = (req: Request, data?: Record<string, unknown>) => {
       break
   }
 
-  return req.method.toUpperCase() === 'GET'
-    ? { status, body }
-    : { status: 303, headers: { location: '/' } }
+  // Redirects POST requests not handled by JavaScript
+  return req.method.toUpperCase() !== 'GET' &&
+    req.headers.accept !== 'application/json'
+    ? { status: 303, headers: { location: '/' } }
+    : { status, body }
 }

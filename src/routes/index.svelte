@@ -24,6 +24,13 @@
   import TodoItem from '$lib/components/TodoItem/todo-item.svelte'
 
   export let todos: Todo[]
+
+  // Updates the UI when a new todo is created
+  const handleCreateTodo = async (res: Response, form: HTMLFormElement) => {
+    const newTodo = await res.json()
+    todos = [...todos, newTodo]
+    form.reset()
+  }
 </script>
 
 <svelte:head>
@@ -32,7 +39,11 @@
 
 <div class="max-w-3xl mx-auto pt-12">
   <h1 class="mb-4 text-3xl">Todos</h1>
-  <form action="/api/todos.json" method="post" class="grid mb-4" use:enhance>
+  <form
+    action="/api/todos.json"
+    method="post"
+    class="grid mb-4"
+    use:enhance={{ result: handleCreateTodo }}>
     <input
       type="text"
       name="text"
