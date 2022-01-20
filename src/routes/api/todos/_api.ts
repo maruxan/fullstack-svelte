@@ -1,6 +1,6 @@
 import type { Request } from '@sveltejs/kit'
 
-const todos: Todo[] = []
+let todos: Todo[] = []
 
 export const api = (req: Request, todo?: Todo) => {
   let status = 500 // defaults to internal server error
@@ -16,6 +16,11 @@ export const api = (req: Request, todo?: Todo) => {
       todos.push(todo)
       status = 201
       body = todo
+      break
+
+    case 'DELETE':
+      todos = todos.filter((todo) => todo.uid !== req.params.uid)
+      status = 200
       break
   }
 
