@@ -31,7 +31,7 @@
   </form>
 
   <!-- Delete Todo Button -->
-  <form action="" method="">
+  <form action="/api/todos/{todo.uid}.json?_method=delete" method="post">
     <button aria-label="Delete todo" class="h-10 w-10 p-2">
       <GoTrashcan />
     </button>
