@@ -31,6 +31,8 @@ export const api = (req: Request, data?: Record<string, unknown>) => {
           data.text
             ? (todo.text = data.text as string)
             : (todo.done = data.done as boolean)
+
+          body = todo
         }
         return todo
       })

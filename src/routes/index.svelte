@@ -25,16 +25,25 @@
 
   export let todos: Todo[]
 
-  // Updates the UI when a new todo is created
+  /**
+   * UI updater functions
+   */
   const handleCreateTodo = async (res: Response, form: HTMLFormElement) => {
     const newTodo = await res.json()
     todos = [...todos, newTodo]
     form.reset()
   }
-
+  /**/
   const handleDeleteTodo = async (res: Response) => {
     const { deletedUserId } = await res.json()
     todos = todos.filter((todo) => todo.uid !== deletedUserId)
+  }
+  /**/
+  const handleUpdateTodo = async (res: Response) => {
+    const updatedTodo = await res.json()
+    todos = todos.map((todo) =>
+      todo.uid === updatedTodo.uid ? updatedTodo : todo
+    )
   }
 </script>
 
@@ -58,6 +67,6 @@
   </form>
 
   {#each todos as todo}
-    <TodoItem {todo} {handleDeleteTodo} />
+    <TodoItem {todo} {handleDeleteTodo} {handleUpdateTodo} />
   {/each}
 </div>
