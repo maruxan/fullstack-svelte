@@ -21,6 +21,7 @@ export const api = (req: Request, data?: Record<string, unknown>) => {
     case 'DELETE':
       todos = todos.filter((todo) => todo.uid !== req.params.uid)
       status = 200
+      body = { deletedUserId: req.params.uid.toString() }
       break
 
     case 'PATCH':

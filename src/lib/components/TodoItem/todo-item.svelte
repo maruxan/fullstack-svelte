@@ -1,9 +1,12 @@
 <script lang="ts">
+  import { enhance } from '$lib/actions/form'
+
   import GoCheck from 'svelte-icons/go/GoCheck.svelte'
   import GoThumbsup from 'svelte-icons/go/GoThumbsup.svelte'
   import GoTrashcan from 'svelte-icons/go/GoTrashcan.svelte'
 
   export let todo: Todo
+  export let handleDeleteTodo: (res: Response) => void
 </script>
 
 <div
@@ -34,7 +37,10 @@
   </form>
 
   <!-- Delete Todo Button -->
-  <form action="/api/todos/{todo.uid}.json?_method=delete" method="post">
+  <form
+    action="/api/todos/{todo.uid}.json?_method=delete"
+    method="post"
+    use:enhance={{ result: handleDeleteTodo }}>
     <button aria-label="Delete todo" class="h-10 w-10 p-2">
       <GoTrashcan />
     </button>

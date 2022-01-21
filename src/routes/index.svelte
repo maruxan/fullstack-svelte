@@ -31,6 +31,11 @@
     todos = [...todos, newTodo]
     form.reset()
   }
+
+  const handleDeleteTodo = async (res: Response) => {
+    const { deletedUserId } = await res.json()
+    todos = todos.filter((todo) => todo.uid !== deletedUserId)
+  }
 </script>
 
 <svelte:head>
@@ -53,6 +58,6 @@
   </form>
 
   {#each todos as todo}
-    <TodoItem {todo} />
+    <TodoItem {todo} {handleDeleteTodo} />
   {/each}
 </div>
