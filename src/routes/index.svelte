@@ -35,8 +35,8 @@
   }
   /**/
   const handleDeleteTodo = async (res: Response) => {
-    const { deletedUserId } = await res.json()
-    todos = todos.filter((todo) => todo.uid !== deletedUserId)
+    const deletedTodo = await res.json()
+    todos = todos.filter((todo) => todo.uid !== deletedTodo.uid)
   }
   /**/
   const handleUpdateTodo = async (res: Response) => {
