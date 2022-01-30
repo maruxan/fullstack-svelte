@@ -52,7 +52,7 @@
 </svelte:head>
 
 <div class="max-w-3xl mx-auto pt-12">
-  <h1 class="mb-4 text-3xl">Todos</h1>
+  <h1 class="mb-4 text-3xl">/todos</h1>
   <form
     action="/api/todos.json"
     method="post"
@@ -62,8 +62,8 @@
       type="text"
       name="text"
       aria-label="Add a todo"
-      placeholder="+ type to add a todo"
-      class="text-center" />
+      placeholder="> what needs to be done?"
+      class="bg-transparent text-green-500 border-0 border-b border-light-500 focus:border-green-500 focus:ring-0 placeholder:text-light-500" />
   </form>
 
   {#each todos as todo}
