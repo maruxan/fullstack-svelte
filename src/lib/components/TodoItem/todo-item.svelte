@@ -69,7 +69,7 @@
         use:focusNode
         value={todo.text} />
     {:else}
-      <p class="py-2 px-3">{todo.text}</p>
+      <p class="py-2 px-3" class:text-dark-400={todo.done}>{todo.text}</p>
     {/if}
   </form>
 
